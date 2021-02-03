@@ -3,3 +3,4 @@ GOCHAIN_DATA=/testsuite/chain/iconee
 GOCHAIN_LOGFILE=/testsuite/chain/iconee.log
 GOCHAIN_CLEAN_DATA=true
 JAVAEE_BIN=/goloop/execman/bin/execman
+PYEE_VERIFY_PACKAGE=true
