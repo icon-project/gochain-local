@@ -22,7 +22,7 @@ startDocker() {
     docker run -dit -v $PWD:/testsuite -p $port:$port \
         --env-file data/dockerenv/$dockerEnv \
         --name gochain-$dockerEnv \
-        goloop/gochain:$TAG
+        goloop/gochain-icon:$TAG
 }
 
 stopDocker() {

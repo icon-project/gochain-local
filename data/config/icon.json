@@ -28,8 +28,8 @@
       }
     ],
     "chain": {
+      "revision": "0xd",
       "auditEnabled": "0x0",
-      "deployerWhiteListEnabled": "0x0",
       "fee": {
         "stepPrice": "0x2e90edd00",
         "stepLimit": {
