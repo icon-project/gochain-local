@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 [start|stop] (docker-tag)"
+    echo "Usage: $0 [start|stop|pause|unpause] (docker-tag)"
     exit 1
 }
 
@@ -31,6 +31,16 @@ stopDocker() {
     docker rm gochain-$1
 }
 
+pauseDocker() {
+    echo ">>> PAUSE gochain-$1"
+    docker pause gochain-$1
+}
+
+unpauseDocker() {
+    echo ">>> UNPAUSE gochain-$1"
+    docker unpause gochain-$1
+}
+
 DOCKER_ENV=iconee
 PORT=9082
 
@@ -40,6 +50,12 @@ case "$CMD" in
   ;;
   stop )
     stopDocker $DOCKER_ENV
+  ;;
+  pause )
+    pauseDocker $DOCKER_ENV
+  ;;
+  unpause )
+    unpauseDocker $DOCKER_ENV
   ;;
   * )
     echo "Error: unknown command: $CMD"
