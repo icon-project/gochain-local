@@ -28,7 +28,7 @@
       }
     ],
     "chain": {
-      "revision": "0xd",
+      "revision": "0xf",
       "auditEnabled": "0x0",
       "fee": {
         "stepPrice": "0x2e90edd00",
