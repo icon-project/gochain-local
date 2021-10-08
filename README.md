@@ -46,16 +46,16 @@ Note that log messages will be generated at `./chain/iconee.log`.
 
 ```
 $ head ./chain/iconee.log
-I|20210415-00:46:01.476846|b6b5|-|main|main.go:431   ____  ___   ____ _   _    _    ___ _   _
-I|20210415-00:46:01.476932|b6b5|-|main|main.go:431  / ___|/ _ \ / ___| | | |  / \  |_ _| \ | |
-I|20210415-00:46:01.476944|b6b5|-|main|main.go:431 | |  _| | | | |   | |_| | / _ \  | ||  \| |
-I|20210415-00:46:01.476952|b6b5|-|main|main.go:431 | |_| | |_| | |___|  _  |/ ___ \ | || |\  |
-I|20210415-00:46:01.476966|b6b5|-|main|main.go:431  \____|\___/ \____|_| |_/_/   \_\___|_| \_|
-I|20210415-00:46:01.476982|b6b5|-|main|main.go:433 Version : alpha.0-22-gddf9cca2-dirty
-I|20210415-00:46:01.477008|b6b5|-|main|main.go:434 Build   : linux/amd64 tags()-2021-04-15-00:44:00
-I|20210415-00:46:01.477022|b6b5|-|metric|metric.go:150 Initialize rootMetricCtx
-T|20210415-00:46:01.477157|b6b5|-|TP|transport.go:383 registerPeerHandler &{0xc00021a720 0xc00021a6c0 map[] {{0 0} 0 0 0 0} 0xc00021a780} true
-T|20210415-00:46:01.477190|b6b5|-|TP|transport.go:383 registerPeerHandler &{0xc00021a690 :8080} true
+I|20211008-03:27:35.242715|b6b5|-|main|main.go:433   ____  ___   ____ _   _    _    ___ _   _
+I|20211008-03:27:35.243626|b6b5|-|main|main.go:433  / ___|/ _ \ / ___| | | |  / \  |_ _| \ | |
+I|20211008-03:27:35.243644|b6b5|-|main|main.go:433 | |  _| | | | |   | |_| | / _ \  | ||  \| |
+I|20211008-03:27:35.243659|b6b5|-|main|main.go:433 | |_| | |_| | |___|  _  |/ ___ \ | || |\  |
+I|20211008-03:27:35.243678|b6b5|-|main|main.go:433  \____|\___/ \____|_| |_/_/   \_\___|_| \_|
+I|20211008-03:27:35.243693|b6b5|-|main|main.go:435 Version : v1.0.0
+I|20211008-03:27:35.243713|b6b5|-|main|main.go:436 Build   : linux/amd64 tags(rocksdb)-2021-10-05-08:13:18
+I|20211008-03:27:35.243732|b6b5|-|metric|metric.go:150 Initialize rootMetricCtx
+T|20211008-03:27:35.244757|b6b5|-|TP|transport.go:383 registerPeerHandler &{0xc0001ca540 0xc0001ca4e0 map[] {{0 0} 0 0 0 0} 0xc0001ca5a0} true
+T|20211008-03:27:35.244925|b6b5|-|TP|transport.go:383 registerPeerHandler &{0xc0001ca4b0 :8080} true
 ```
 
 ### Stop the container
