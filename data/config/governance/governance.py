@@ -147,6 +147,7 @@ class Governance(IconSystemScoreBase):
     def on_install(self) -> None:
         self._version.set(VERSION)
         self._auditor_list.put(self.owner)
+        self._set_step_costs_v1()
 
     def is_less_than_target_version(self, target_version: str) -> bool:
         last_version = self._version.get()
@@ -439,6 +440,33 @@ class Governance(IconSystemScoreBase):
             if key not in step_costs:
                 step_types.put(key)
             step_costs[key] = value
+
+    def _set_step_costs_v1(self):
+        costs_v1 = {
+            "schema": "0x1",
+            "default": "0x186a0",
+            "input": "0xc8",
+            "contractCall": "0x61a8",
+            "contractCreate": "0x3b9aca00",
+            "contractUpdate": "0x3b9aca00",
+            "contractSet": "0x3a98",
+            "get": "0x19",
+            "set": "0x140",
+            "delete": "-0xf0",
+            "apiCall": "0x2710",
+            "getBase": "0xbb8",
+            "setBase": "0x2710",
+            "deleteBase": "0xc8",
+            "logBase": "0x1388",
+            "log": "0x64",
+            "contractDestruct": "0x0",
+            "replace": "0x0",
+            "eventLog": "0x0"
+        }
+        step_costs = {}
+        for k, v in costs_v1.items():
+            step_costs[k] = int(v, 0)
+        self.set_icon_network_value(IconNetworkValueType.STEP_COSTS, step_costs)
 
     def _set_initial_max_step_limits(self):
         max_step_limits = DictDB('import_white_list', self.db, value_type=str)
