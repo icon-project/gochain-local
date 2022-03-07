@@ -23,11 +23,11 @@ A collection of helper scripts to run gochain docker container as a local networ
 
 ## Usage
 
-You can start or stop the docker container using the following script.
+You can start or stop the docker container using the following script. You can also use [docker compose](#using-docker-compose) to start or stop the container 
 
 ```
 $ ./run_gochain.sh
-Usage: ./run_gochain.sh [start|stop] (docker-tag)
+Usage: ./run_gochain.sh [start|stop|pause|unpause] (docker-tag)
 ```
 
 ### Start the container
@@ -66,3 +66,60 @@ $ ./run_gochain.sh stop
 gochain-iconee
 gochain-iconee
 ```
+
+### Pause the container
+```
+$ ./run_gochain.sh pause
+```
+
+### Unpause the container
+```
+$ ./run_gochain.sh unpause
+```
+
+## Using Docker-Compose
+
+### Create and Start the container
+
+```
+$ docker-compose up -d
+[+] Running 2/2
+ ⠿ Network gochain-local_default  Created
+ ⠿ Container gochain-iconee       Started
+
+$ docker ps
+CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                        NAMES
+48e4c66fec68   goloop/gochain-icon:latest   "/entrypoint /bin/sh…"   9 seconds ago   Up 8 seconds   8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp   gochain-iconee
+```
+
+### Check logs
+
+```
+$docker-compose logs -f
+```
+
+### Stop the container
+
+```
+$docker-compose stop
+```
+
+### Stop and remove the container
+```
+$docker-compose down
+```
+
+### Pause the container
+This will pause the local blockchain. No new blocks will be produced.
+```
+$docker-compose pause
+```
+
+### Unpause the container
+This will resume the blockchain from the same paused height.
+```
+$docker-compose unpause
+```
+
+## Persistence of Data
+If you want to persist your data across docker restarts, set `GOCHAIN_CLEAN_DATA` in `./data/dockerenv/iconee` to `false`. 
