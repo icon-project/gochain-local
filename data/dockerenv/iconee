@@ -6,3 +6,4 @@ GOCHAIN_DB_TYPE=rocksdb
 GOCHAIN_CLEAN_DATA=true
 JAVAEE_BIN=/goloop/execman/bin/execman
 PYEE_VERIFY_PACKAGE=true
+ICON_CONFIG=/testsuite/data/config/icon_config.json
