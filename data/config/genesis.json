@@ -21,7 +21,8 @@
     }
   ],
   "chain": {
-    "revision": "0xf",
+    "revision": "0x13",
+    "blockInterval": "0x3e8",
     "fee": {
       "stepPrice": "0x2e90edd00",
       "stepLimit": {
