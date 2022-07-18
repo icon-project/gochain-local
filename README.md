@@ -23,7 +23,7 @@ A collection of helper scripts to run gochain docker container as a local networ
 
 ## Usage
 
-You can start or stop the docker container using the following script. You can also use [docker compose](#using-docker-compose) to start or stop the container 
+You can start or stop the docker container using the following script. You can also use [docker compose](#using-docker-compose) to start or stop the container.
 
 ```
 $ ./run_gochain.sh
@@ -82,44 +82,44 @@ $ ./run_gochain.sh unpause
 ### Create and Start the container
 
 ```
-$ docker-compose up -d
-[+] Running 2/2
- ⠿ Network gochain-local_default  Created
- ⠿ Container gochain-iconee       Started
+$ docker-compose -f compose-single.yml up -d
+Creating network "gochain-local_default" with the default driver
+Creating gochain-iconee ... done
 
-$ docker ps
-CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                        NAMES
-48e4c66fec68   goloop/gochain-icon:latest   "/entrypoint /bin/sh…"   9 seconds ago   Up 8 seconds   8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp   gochain-iconee
+$ docker-compose -f compose-single.yml ps
+     Name                   Command               State                              Ports
+----------------------------------------------------------------------------------------------------------------------
+gochain-iconee   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp,:::9082->9082/tcp
 ```
 
 ### Check logs
 
 ```
-$docker-compose logs -f
+$ docker-compose -f compose-single.yml logs -f
 ```
 
 ### Stop the container
 
 ```
-$docker-compose stop
+$ docker-compose -f compose-single.yml stop
 ```
 
 ### Stop and remove the container
 ```
-$docker-compose down
+$ docker-compose -f compose-single.yml down
 ```
 
 ### Pause the container
 This will pause the local blockchain. No new blocks will be produced.
 ```
-$docker-compose pause
+$ docker-compose -f compose-single.yml pause
 ```
 
 ### Unpause the container
 This will resume the blockchain from the same paused height.
 ```
-$docker-compose unpause
+$ docker-compose -f compose-single.yml unpause
 ```
 
 ## Persistence of Data
-If you want to persist your data across docker restarts, set `GOCHAIN_CLEAN_DATA` in `./data/dockerenv/iconee` to `false`. 
+If you want to persist your data across docker restarts, set `GOCHAIN_CLEAN_DATA` in `./data/single/iconee.env` to `false`.

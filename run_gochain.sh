@@ -19,8 +19,10 @@ startDocker() {
     local dockerEnv=$1
     local port=$2
     echo ">>> START $dockerEnv $port $TAG"
-    docker run -dit -v $PWD:/testsuite -p $port:$port \
-        --env-file data/dockerenv/$dockerEnv \
+    docker run -dit -p $port:$port \
+        -v $PWD/data/single:/goloop/data \
+        -v $PWD/chain:/goloop/chain \
+        --env-file data/single/${dockerEnv}.env \
         --name gochain-$dockerEnv \
         goloop/gochain-icon:$TAG
 }
