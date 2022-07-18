@@ -79,8 +79,13 @@ $ ./run_gochain.sh unpause
 
 ## Using Docker-Compose
 
+There are two docker Compose files as the following.
+  - `compose-single.yml`: run a single gochain node as the previous script example
+  - `compose-multi.yml`: run multiple (four) gochain nodes which validate the same blocks
+
 ### Create and Start the container
 
+#### For a single gochain node:
 ```
 $ docker-compose -f compose-single.yml up -d
 Creating network "gochain-local_default" with the default driver
@@ -92,34 +97,35 @@ $ docker-compose -f compose-single.yml ps
 gochain-iconee   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp,:::9082->9082/tcp
 ```
 
-### Check logs
-
+#### For multiple gochain nodes:
 ```
-$ docker-compose -f compose-single.yml logs -f
-```
+$ docker-compose -f compose-multi.yml up -d
+Creating network "gochain-local_default" with the default driver
+Creating gochain-local_node3_1 ... done
+Creating gochain-local_node0_1 ... done
+Creating gochain-local_node1_1 ... done
+Creating gochain-local_node2_1 ... done
 
-### Stop the container
-
-```
-$ docker-compose -f compose-single.yml stop
+$ docker-compose -f compose-multi.yml ps
+        Name                       Command               State                         Ports
+-------------------------------------------------------------------------------------------------------------------
+gochain-local_node0_1   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 0.0.0.0:9080->9080/tcp,:::9080->9080/tcp
+gochain-local_node1_1   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 0.0.0.0:9081->9080/tcp,:::9081->9080/tcp
+gochain-local_node2_1   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 0.0.0.0:9082->9080/tcp,:::9082->9080/tcp
+gochain-local_node3_1   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 0.0.0.0:9083->9080/tcp,:::9083->9080/tcp
 ```
 
 ### Stop and remove the container
+
 ```
 $ docker-compose -f compose-single.yml down
 ```
 
-### Pause the container
-This will pause the local blockchain. No new blocks will be produced.
+or
 ```
-$ docker-compose -f compose-single.yml pause
-```
-
-### Unpause the container
-This will resume the blockchain from the same paused height.
-```
-$ docker-compose -f compose-single.yml unpause
+$ docker-compose -f compose-multi.yml down
 ```
 
 ## Persistence of Data
 If you want to persist your data across docker restarts, set `GOCHAIN_CLEAN_DATA` in `./data/single/iconee.env` to `false`.
+In case of the multiple nodes, modify `./data/multi/common.env` instead.
