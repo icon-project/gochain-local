@@ -1,0 +1,53 @@
+services:
+    node0:
+        image: goloop/gochain-icon:latest
+        volumes:
+            - ./data/multi:/goloop/data
+            - ./chain:/goloop/chain
+        env_file:
+            - ./data/multi/common.env
+        environment:
+            GOCHAIN_CONFIG: "/goloop/data/config0.json"
+            GOCHAIN_DATA: "/goloop/chain/node0"
+            GOCHAIN_LOGFILE: "/goloop/chain/node0.log"
+        ports:
+            - "9080:9080"
+    node1:
+        image: goloop/gochain-icon:latest
+        volumes:
+            - ./data/multi:/goloop/data
+            - ./chain:/goloop/chain
+        env_file:
+            - ./data/multi/common.env
+        environment:
+            GOCHAIN_CONFIG: "/goloop/data/config1.json"
+            GOCHAIN_DATA: "/goloop/chain/node1"
+            GOCHAIN_LOGFILE: "/goloop/chain/node1.log"
+        ports:
+            - "9081:9080"
+    node2:
+        image: goloop/gochain-icon:latest
+        volumes:
+            - ./data/multi:/goloop/data
+            - ./chain:/goloop/chain
+        env_file:
+            - ./data/multi/common.env
+        environment:
+            GOCHAIN_CONFIG: "/goloop/data/config2.json"
+            GOCHAIN_DATA: "/goloop/chain/node2"
+            GOCHAIN_LOGFILE: "/goloop/chain/node2.log"
+        ports:
+            - "9082:9080"
+    node3:
+        image: goloop/gochain-icon:latest
+        volumes:
+            - ./data/multi:/goloop/data
+            - ./chain:/goloop/chain
+        env_file:
+            - ./data/multi/common.env
+        environment:
+            GOCHAIN_CONFIG: "/goloop/data/config3.json"
+            GOCHAIN_DATA: "/goloop/chain/node3"
+            GOCHAIN_LOGFILE: "/goloop/chain/node3.log"
+        ports:
+            - "9083:9080"

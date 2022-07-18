@@ -1,0 +1,48 @@
+{
+  "db_type": "goleveldb",
+  "seed_addr": "node1:8080",
+  "role": 3,
+  "concurrency_level": 1,
+  "node_cache": "none",
+  "channel": "default",
+  "secureSuites": "",
+  "secureAeads": "",
+  "waitTimeout": 0,
+  "maxTimeout": 0,
+  "txTimeout": 0,
+  "chain_dir": "",
+  "p2p": "127.0.0.1:8080",
+  "p2p_listen": "",
+  "ee_socket": "",
+  "rpc_addr": ":9080",
+  "rpc_dump": false,
+  "rpc_debug": true,
+  "rpc_batch_limit": 10,
+  "ee_instances": 1,
+  "engines": "python,java",
+  "key_store": {
+    "address": "hxe9dfcd26dbde32aca8f878c1c4bfd83a0c7f70fc",
+    "id": "4698207b-dde4-45e8-a26c-ec742d6c1c55",
+    "version": 3,
+    "coinType": "icx",
+    "crypto": {
+      "cipher": "aes-128-ctr",
+      "cipherparams": {
+        "iv": "e0c5c2184095c6741ace25c026a2a3da"
+      },
+      "ciphertext": "290f1b6a51274c65f3f4364216a3fd13fb58ab9ccf42080572e307d115d33897",
+      "kdf": "scrypt",
+      "kdfparams": {
+        "dklen": 32,
+        "n": 65536,
+        "r": 8,
+        "p": 1,
+        "salt": "d36e89ea0babb4b2"
+      },
+      "mac": "ae268c9c845d2cd8f2f3f393afd9150bbd20ab9660efe7097e7abf9ef3fcedc7"
+    }
+  },
+  "key_password": "gochain",
+  "log_level": "trace",
+  "console_level": "trace"
+}
