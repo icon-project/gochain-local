@@ -3,6 +3,7 @@ services:
         image: goloop/gochain-icon:latest
         volumes:
             - ./data/multi:/goloop/data
+            - ./data/governance:/goloop/data/gov
             - ./chain:/goloop/chain
         env_file:
             - ./data/multi/common.env
@@ -16,6 +17,7 @@ services:
         image: goloop/gochain-icon:latest
         volumes:
             - ./data/multi:/goloop/data
+            - ./data/governance:/goloop/data/gov
             - ./chain:/goloop/chain
         env_file:
             - ./data/multi/common.env
@@ -29,6 +31,7 @@ services:
         image: goloop/gochain-icon:latest
         volumes:
             - ./data/multi:/goloop/data
+            - ./data/governance:/goloop/data/gov
             - ./chain:/goloop/chain
         env_file:
             - ./data/multi/common.env
@@ -42,6 +45,7 @@ services:
         image: goloop/gochain-icon:latest
         volumes:
             - ./data/multi:/goloop/data
+            - ./data/governance:/goloop/data/gov
             - ./chain:/goloop/chain
         env_file:
             - ./data/multi/common.env

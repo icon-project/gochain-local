@@ -21,6 +21,7 @@ startDocker() {
     echo ">>> START $dockerEnv $port $TAG"
     docker run -dit -p $port:$port \
         -v $PWD/data/single:/goloop/data \
+        -v $PWD/data/governance:/goloop/data/gov \
         -v $PWD/chain:/goloop/chain \
         --env-file data/single/${dockerEnv}.env \
         --name gochain-$dockerEnv \

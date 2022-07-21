@@ -14,8 +14,8 @@
       "address": "cx0000000000000000000000000000000000000001",
       "name": "governance",
       "score": {
-        "contentId": "hash:{{ziphash:governance}}",
-        "contentType": "application/zip",
+        "contentId": "hash:{{hash:gov/governance-2.1.3-optimized.jar}}",
+        "contentType": "application/java",
         "owner": "hxb6b5791be0b5ef67063b3c10b840fb81514db2fd"
       }
     }
@@ -30,19 +30,22 @@
         "query": "0x2faf080"
       },
       "stepCosts": {
-        "default": "0x186a0",
+        "apiCall": "0x2710",
         "contractCall": "0x61a8",
         "contractCreate": "0x3b9aca00",
-        "contractUpdate": "0x5f5e1000",
-        "contractDestruct": "-0x11170",
-        "contractSet": "0x7530",
-        "get": "0x0",
-        "set": "0x140",
-        "replace": "0x50",
+        "contractSet": "0x3a98",
+        "contractUpdate": "0x3b9aca00",
+        "default": "0x186a0",
         "delete": "-0xf0",
+        "deleteBase": "0xc8",
+        "get": "0x19",
+        "getBase": "0xbb8",
         "input": "0xc8",
-        "eventLog": "0x64",
-        "apiCall": "0x2710"
+        "log": "0x64",
+        "logBase": "0x1388",
+        "schema": "0x1",
+        "set": "0x140",
+        "setBase": "0x2710"
       }
     },
     "validatorList": [

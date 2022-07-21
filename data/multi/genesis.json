@@ -9,6 +9,15 @@
       "address": "hx1000000000000000000000000000000000000000",
       "balance": "0x0",
       "name": "treasury"
+    },
+    {
+      "address": "cx0000000000000000000000000000000000000001",
+      "name": "governance",
+      "score": {
+        "contentId": "hash:{{hash:gov/governance-2.1.3-optimized.jar}}",
+        "contentType": "application/java",
+        "owner": "hxb6b5791be0b5ef67063b3c10b840fb81514db2fd"
+      }
     }
   ],
   "chain": {

@@ -7,6 +7,7 @@ services:
             - ./data/single/iconee.env
         volumes:
             - ./data/single:/goloop/data
+            - ./data/governance:/goloop/data/gov
             - ./chain:/goloop/chain
         ports:
             - "9082:9082"
