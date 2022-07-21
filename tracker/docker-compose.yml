@@ -1,0 +1,87 @@
+services:
+  tracker_mysql:
+    image: looploy/tracker_mysql:20220525
+    container_name: tracker_mysql
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
+    environment:
+      TZ: "GMT-9"
+    ports:
+      - "3306:3306"
+  tracker_nginx:
+    image: 'jinwoo/nginx:1.15.0'
+    container_name: tracker_nginx
+    environment:
+      TZ: "GMT-9"
+      NGINX_LOG_OUTPUT: 'file'
+      NGINX_LOG_TYPE: 'main'
+      NGINX_USER: 'root'
+      VIEW_CONFIG: "yes"
+      PROXY_MODE: "yes"
+      USE_NGINX_THROTTLE: "yes"
+      NGINX_THROTTLE_BY_URI: "yes"
+      NGINX_RATE_LIMIT: "300r/s"
+      NGINX_BURST: "5"
+      NGINX_SET_NODELAY: "no"
+      PROXY_PASS_ENDPOINT: 'http://tracker_app:3000'
+      LOCATION: |
+        location /score { alias /score/;}
+        # backend api v0
+        location /v0 {
+           proxy_pass http://api_cluster;
+        }
+        # backend api v3
+        location /v3 {
+           proxy_pass http://api_cluster;
+        }
+        location /api/v3 {
+           if ($$request_method = 'OPTIONS') {
+                 add_header 'Access-Control-Allow-Origin' '*';
+                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                 add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+                 add_header 'Access-Control-Max-Age' 1728000;
+                 add_header 'Content-Type' 'text/plain; charset=utf-8';
+                 add_header 'Content-Length' 0;
+                 return 204;
+           }
+           if ($$request_method = 'POST') {
+                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                 add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+                 add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+           }
+           if ($$request_method = 'GET') {
+                 add_header 'Access-Control-Allow-Origin' '*';
+                 add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                 add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+                 add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+           }
+           proxy_pass ${PEER_TYPE}://loop_cluster;
+        }
+      USE_DEFAULT_SERVER_CONF:  |
+        upstream api_cluster {
+           server tracker_app:8080;
+        }
+        upstream loop_cluster {
+           server ${PEER_IPADDR};
+        }
+    ports:
+      - '80:80'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - ./logs/nginx:/var/log/nginx/
+      - ./score:/score
+  tracker_app:
+    image: iconloop/tracker:20220720
+    container_name: tracker_app
+    volumes:
+      - ./score:/score
+      - ./logs/tracker:/home/ubuntu/logs
+    command: sh /start.sh
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      TZ: "GMT-9"
+      PEER_TYPE: ${PEER_TYPE}
+      PEER_IPADDR: ${PEER_IPADDR}

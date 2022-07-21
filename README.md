@@ -132,3 +132,21 @@ $ docker-compose -f compose-multi.yml down
 ## Persistence of Data
 If you want to persist your data across docker restarts, set `GOCHAIN_CLEAN_DATA` in `./data/single/iconee.env` to `false`.
 In case of the multiple nodes, modify `./data/multi/common.env` instead.
+
+
+## Using Blockchain Tracker
+
+[Tracker](tracker) folder contains a `docker-compose.yml` and `.env` files to run a local blockchain explorer (a.k.a. tracker).
+
+After starting the local gochain nodes (single or multi), run the following command to start the tracker.
+
+```
+$ cd tracker
+$ docker-compose up -d
+Creating network "tracker_default" with the default driver
+Creating tracker_mysql ... done
+Creating tracker_app   ... done
+Creating tracker_nginx ... done
+```
+
+Then open the page [http://127.0.0.1](http://127.0.0.1) with your favorite web browser.
