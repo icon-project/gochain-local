@@ -27,19 +27,21 @@ You can start or stop the docker container using the following script. You can a
 
 ```
 $ ./run_gochain.sh
-Usage: ./run_gochain.sh [start|stop|pause|unpause] (docker-tag)
+Usage: ./run_gochain.sh [start|stop|pause|unpause|ps]
 ```
 
 ### Start the container
 
 ```
 $ ./run_gochain.sh start
->>> START iconee 9082 latest
-48e4c66fec68d01e767da91cbbb043c03f595b33cac69c8cdf94f39eaa03b34e
+>>> START with compose-single.yml
+Creating network "gochain-local_default" with the default driver
+Creating gochain-iconee ... done
 
-$ docker ps
-CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                        NAMES
-48e4c66fec68   goloop/gochain-icon:latest   "/entrypoint /bin/sh…"   9 seconds ago   Up 8 seconds   8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp   gochain-iconee
+$ ./run_gochain.sh ps
+     Name                   Command               State                              Ports
+----------------------------------------------------------------------------------------------------------------------
+gochain-iconee   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp,:::9082->9082/tcp
 ```
 
 Note that log messages will be generated at `./chain/iconee.log`.
@@ -62,9 +64,10 @@ T|20211008-03:27:35.244925|b6b5|-|TP|transport.go:383 registerPeerHandler &{0xc0
 
 ```
 $ ./run_gochain.sh stop
->>> STOP gochain-iconee
-gochain-iconee
-gochain-iconee
+>>> STOP with compose-single.yml
+Stopping gochain-iconee ... done
+Removing gochain-iconee ... done
+Removing network gochain-local_default
 ```
 
 ### Pause the container

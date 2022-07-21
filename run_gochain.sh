@@ -1,64 +1,57 @@
 #!/bin/bash
 
+TARGET=${TARGET:-single}
+
 usage() {
-    echo "Usage: $0 [start|stop|pause|unpause] (docker-tag)"
+    echo "Usage: $0 [start|stop|pause|unpause|ps]"
     exit 1
 }
 
 if [ $# -eq 1 ]; then
     CMD=$1
-    TAG=latest
-elif [ $# -eq 2 ]; then
-    CMD=$1
-    TAG=$2
 else
     usage
 fi
 
 startDocker() {
-    local dockerEnv=$1
-    local port=$2
-    echo ">>> START $dockerEnv $port $TAG"
-    docker run -dit -p $port:$port \
-        -v $PWD/data/single:/goloop/data \
-        -v $PWD/data/governance:/goloop/data/gov \
-        -v $PWD/chain:/goloop/chain \
-        --env-file data/single/${dockerEnv}.env \
-        --name gochain-$dockerEnv \
-        goloop/gochain-icon:$TAG
+    echo ">>> START with compose-$1.yml"
+    docker-compose -f compose-$1.yml up -d
 }
 
 stopDocker() {
-    echo ">>> STOP gochain-$1"
-    docker stop gochain-$1
-    docker rm gochain-$1
+    echo ">>> STOP with compose-$1.yml"
+    docker-compose -f compose-$1.yml down
 }
 
 pauseDocker() {
-    echo ">>> PAUSE gochain-$1"
-    docker pause gochain-$1
+    echo ">>> PAUSE with compose-$1.yml"
+    docker-compose -f compose-$1.yml pause
 }
 
 unpauseDocker() {
-    echo ">>> UNPAUSE gochain-$1"
-    docker unpause gochain-$1
+    echo ">>> UNPAUSE with compose-$1.yml"
+    docker-compose -f compose-$1.yml unpause
 }
 
-DOCKER_ENV=iconee
-PORT=9082
+psDocker() {
+    docker-compose -f compose-$1.yml ps
+}
 
 case "$CMD" in
   start )
-    startDocker $DOCKER_ENV $PORT
+    startDocker $TARGET
   ;;
   stop )
-    stopDocker $DOCKER_ENV
+    stopDocker $TARGET
   ;;
   pause )
-    pauseDocker $DOCKER_ENV
+    pauseDocker $TARGET
   ;;
   unpause )
-    unpauseDocker $DOCKER_ENV
+    unpauseDocker $TARGET
+  ;;
+  ps )
+    psDocker $TARGET
   ;;
   * )
     echo "Error: unknown command: $CMD"
