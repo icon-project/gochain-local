@@ -10,7 +10,7 @@ A collection of helper scripts to run gochain docker container as a local networ
 - `goloop/gochain-icon` docker image
   - Build
     ```
-    $ git clone git@github.com:icon-project/goloop.git
+    $ git clone https://github.com/icon-project/goloop.git
     $ cd goloop
     $ make gochain-icon-image
     ```
