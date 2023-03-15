@@ -15,26 +15,26 @@ fi
 
 startDocker() {
     echo ">>> START with compose-$1.yml"
-    docker-compose -f compose-$1.yml up -d
+    docker compose -f compose-$1.yml up -d
 }
 
 stopDocker() {
     echo ">>> STOP with compose-$1.yml"
-    docker-compose -f compose-$1.yml down
+    docker compose -f compose-$1.yml down
 }
 
 pauseDocker() {
     echo ">>> PAUSE with compose-$1.yml"
-    docker-compose -f compose-$1.yml pause
+    docker compose -f compose-$1.yml pause
 }
 
 unpauseDocker() {
     echo ">>> UNPAUSE with compose-$1.yml"
-    docker-compose -f compose-$1.yml unpause
+    docker compose -f compose-$1.yml unpause
 }
 
 psDocker() {
-    docker-compose -f compose-$1.yml ps
+    docker compose -f compose-$1.yml ps
 }
 
 case "$CMD" in

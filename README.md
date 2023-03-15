@@ -80,7 +80,7 @@ $ ./run_gochain.sh pause
 $ ./run_gochain.sh unpause
 ```
 
-## Using Docker-Compose
+## Using Docker Compose
 
 There are two docker Compose files as the following.
   - `compose-single.yml`: run a single gochain node as the previous script example
@@ -90,11 +90,11 @@ There are two docker Compose files as the following.
 
 #### For a single gochain node:
 ```
-$ docker-compose -f compose-single.yml up -d
+$ docker compose -f compose-single.yml up -d
 Creating network "gochain-local_default" with the default driver
 Creating gochain-iconee ... done
 
-$ docker-compose -f compose-single.yml ps
+$ docker compose -f compose-single.yml ps
      Name                   Command               State                              Ports
 ----------------------------------------------------------------------------------------------------------------------
 gochain-iconee   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 9080/tcp, 0.0.0.0:9082->9082/tcp,:::9082->9082/tcp
@@ -102,14 +102,14 @@ gochain-iconee   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 9080/tcp, 0.
 
 #### For multiple gochain nodes:
 ```
-$ docker-compose -f compose-multi.yml up -d
+$ docker compose -f compose-multi.yml up -d
 Creating network "gochain-local_default" with the default driver
 Creating gochain-local_node3_1 ... done
 Creating gochain-local_node0_1 ... done
 Creating gochain-local_node1_1 ... done
 Creating gochain-local_node2_1 ... done
 
-$ docker-compose -f compose-multi.yml ps
+$ docker compose -f compose-multi.yml ps
         Name                       Command               State                         Ports
 -------------------------------------------------------------------------------------------------------------------
 gochain-local_node0_1   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 0.0.0.0:9080->9080/tcp,:::9080->9080/tcp
@@ -121,12 +121,12 @@ gochain-local_node3_1   /entrypoint /bin/sh -c /go ...   Up      8080/tcp, 0.0.0
 ### Stop and remove the container
 
 ```
-$ docker-compose -f compose-single.yml down
+$ docker compose -f compose-single.yml down
 ```
 
 or
 ```
-$ docker-compose -f compose-multi.yml down
+$ docker compose -f compose-multi.yml down
 ```
 
 ## Persistence of Data
@@ -142,7 +142,7 @@ After starting the local gochain nodes (single or multi), run the following comm
 
 ```
 $ cd tracker
-$ docker-compose up -d
+$ docker compose up -d
 Creating network "tracker_default" with the default driver
 Creating tracker_mysql ... done
 Creating tracker_app   ... done
