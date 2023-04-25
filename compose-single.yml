@@ -2,7 +2,7 @@ version: "3.7"
 services:
     gochain-iconee:
         container_name: gochain-iconee
-        image: goloop/gochain-icon:latest
+        image: iconcommunity/gochain-icon:latest
         env_file:
             - ./data/single/iconee.env
         volumes:

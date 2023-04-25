@@ -7,20 +7,6 @@ A collection of helper scripts to run gochain docker container as a local networ
 - Download and install Docker
   - [Get Docker](https://docs.docker.com/get-docker/)
 
-- `goloop/gochain-icon` docker image
-  - Build
-    ```
-    $ git clone https://github.com/icon-project/goloop.git
-    $ cd goloop
-    $ make gochain-icon-image
-    ```
-  - Verify the generated image
-    ```
-    $ docker images goloop/gochain-icon
-    REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
-    goloop/gochain-icon   latest    74676aec69ef   2 minutes ago   513MB
-    ```
-
 ## Usage
 
 You can start or stop the docker container using the following script. You can also use [docker compose](#using-docker-compose) to start or stop the container.
