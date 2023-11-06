@@ -1,6 +1,6 @@
 services:
     node0:
-        image: goloop/gochain-icon:latest
+        image: goloop/gochain:latest
         volumes:
             - ./data/multi:/goloop/data
             - ./data/governance:/goloop/data/gov
@@ -14,7 +14,7 @@ services:
         ports:
             - "9080:9080"
     node1:
-        image: goloop/gochain-icon:latest
+        image: goloop/gochain:latest
         volumes:
             - ./data/multi:/goloop/data
             - ./data/governance:/goloop/data/gov
@@ -28,7 +28,7 @@ services:
         ports:
             - "9081:9080"
     node2:
-        image: goloop/gochain-icon:latest
+        image: goloop/gochain:latest
         volumes:
             - ./data/multi:/goloop/data
             - ./data/governance:/goloop/data/gov
@@ -42,7 +42,7 @@ services:
         ports:
             - "9082:9080"
     node3:
-        image: goloop/gochain-icon:latest
+        image: goloop/gochain:latest
         volumes:
             - ./data/multi:/goloop/data
             - ./data/governance:/goloop/data/gov
